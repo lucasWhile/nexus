@@ -22,3 +22,7 @@ Route::post('login',[UserController::class, 'login'])->name('date.user.login');
 Route::get('view/user/add/create',[UserController::class, 'view_add_user_create'])->name('view.user.add.create');
 
 Route::get('date/add/new/user',[UserController::class, 'date_add_new_user'])->name('date.user.add.create');
+
+//listar todos os usuarios
+
+Route::get('list/users',[UserController::class, 'list_users'])->name('list_users');

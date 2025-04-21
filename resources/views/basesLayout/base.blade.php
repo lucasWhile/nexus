@@ -17,6 +17,16 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
+          @auth
+          <li class="nav-item"><a class="nav-link" href="{{ route('view.user.add.create') }}">Adicionar Usuarios</a></li>
+          @if (Auth::user()->level == 'administrador')
+          <li class="nav-item"><a class="nav-link" href="{{ route('list_users') }}">Listar Usuarios</a></li>
+
+          @endif
+
+     
+
+          @endauth
           <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
           <li class="nav-item"><a class="nav-link" href="projetos.html">Projetos</a></li>
           <li class="nav-item"><a class="nav-link" href="professor.html">Professores</a></li>

@@ -97,7 +97,6 @@ class UserController extends Controller
     }
 
 
-
     public function login(Request $request)
     {
         $request->validate([
@@ -124,4 +123,11 @@ class UserController extends Controller
 
         return redirect()->route('index'); 
     }
+
+    public function list_users (Request $request){
+        $users=User::all();
+        return view('user.list_users',compact('users'));
+    }
+
+
 }
