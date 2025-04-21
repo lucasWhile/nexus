@@ -2,6 +2,14 @@
 @section('title','Listar Usuários')
 @section('container')
 
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+@endif
+
+
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-12">
@@ -20,6 +28,7 @@
                                     <th scope="col">Nome</th>
                                     <th scope="col">Nível</th>
                                     <th scope="col">Email</th>
+                                    <th scope="col">Status</th>
                                     <th scope="col" class="text-center">Editar</th>
                                     <th scope="col" class="text-center">Apagar</th>
                                 </tr>
@@ -31,17 +40,24 @@
                                         <td>{{ $user->name }}</td>
                                         <td>{{ ucfirst($user->level) }}</td>
                                         <td>{{ $user->email }}</td>
+                                        <td>@if( $user->status==1 )
+                                            ativo
+                                            @else
+                                            não ativo
+                                            @endif
+
+                                        </td>
                                         <td class="text-center">
                                             <a href="#" class="btn btn-outline-secondary btn-sm">
                                                 ✏️ Editar
                                             </a>
                                         </td>
                                         <td class="text-center">
-                                            <form action="#" method="POST" onsubmit="return confirm('Tem certeza que deseja apagar?');">
+                                            <form action="{{ route('user.disable') }}" method="POST" onsubmit="return confirm('Tem certeza que deseja desativar o usuario?');">
                                                 @csrf
-                                                @method('DELETE')
+                                                <input type="hidden" name="id" value="{{ $user->id }}">
                                                 <button type="submit" class="btn btn-outline-danger btn-sm">
-                                                    🗑️ Apagar
+                                                    Desativar/Ativar?
                                                 </button>
                                             </form>
                                         </td>

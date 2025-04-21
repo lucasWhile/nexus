@@ -129,5 +129,26 @@ class UserController extends Controller
         return view('user.list_users',compact('users'));
     }
 
+    public function user_disable(Request $request){
+        $id_user=$request->id;
+        echo $id_user;
+        $user = User::find($id_user);
+
+        if( $user->status == false){
+            $user->status = true;
+            $user->save();
+            return back()->with('success', 'Usuário reativado com sucesso!');
+        }
+        else{
+            $user->status = false;
+            $user->save();
+            return back()->with('success', 'Usuário desativado com sucesso!');
+        }
+      
+    
+       
+        
+    }
+
 
 }
