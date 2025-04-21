@@ -26,6 +26,7 @@ Route::get('date/add/new/user',[UserController::class, 'date_add_new_user'])->na
 //listar todos os usuarios
 
 Route::get('list/users',[UserController::class, 'list_users'])->name('list_users');
-
+//desabilitar ou habilitar o usuario
 Route::post('user/disable',[UserController::class, 'user_disable'])->name('user.disable');
 
+// editar dados do usuario

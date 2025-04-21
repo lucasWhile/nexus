@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Profile;
 use App\Models\User;
 
 use Illuminate\Http\Request;
@@ -36,20 +37,29 @@ class UserController extends Controller
             'password' => 'required',
             'level' => 'required',
             'cpf' => 'required',
+            'lattes_url' => 'nullable',
         ]);
-
-     
     
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
-            'password' => Hash::make($validated['password']), // Criptografa a senha
+            'password' => Hash::make($validated['password']),
             'level' => $validated['level'],
             'cpf' => $validated['cpf'],
+            'status' => true, 
         ]);
     
-        return 'deu certo';
+        // Se for professor, salva perfil com Lattes
+        if ($validated['level'] === 'professor') {
+            Profile::create([
+                'lattes_url' => $validated['lattes_url'],
+                'user_id' => $user->id,
+            ]);
+        }
+    
+        return redirect()->back()->with('success', 'Usuário cadastrado com sucesso!');
     }
+    
 
     /**
      * Store a newly created resource in storage.
