@@ -13,19 +13,26 @@
         <h4 class="text-primary fw-bold">Nexus Acadêmico - Login</h4>
       </div>
       <div class="card-body bg-white">
-        <form>
+        <form method="POST" action="{{ route('date.user.login') }}">
+          @csrf
           <div class="mb-3">
-            <label for="cpf" class="form-label text-primary">CPF</label>
-            <input type="text" class="form-control border-primary" id="cpf" name="cpf" placeholder="000.000.000-00" required>
-          </div>
-          <div class="mb-3">
-            <label for="password" class="form-label text-primary">Senha</label>
-            <input type="password" class="form-control border-primary" id="password" name="password" required>
-          </div>
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input border-primary" id="remember">
-            <label class="form-check-label text-primary" for="remember">Manter conectado</label>
-          </div>
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+            
+            @error('email')
+                <div class="text-danger mt-1">{{ $message }}</div>
+            @enderror
+        </div>
+        
+        <div class="mb-3">
+          <label for="password" class="form-label">Senha</label>
+          <input type="password" class="form-control" id="password" name="password">
+      
+          @error('password')
+              <div class="text-danger mt-1">{{ $message }}</div>
+          @enderror
+        </div>
+          
           <button type="submit" class="btn btn-primary w-100">Entrar</button>
         </form>
       </div>

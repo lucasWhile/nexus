@@ -20,7 +20,7 @@
           <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
           <li class="nav-item"><a class="nav-link" href="projetos.html">Projetos</a></li>
           <li class="nav-item"><a class="nav-link" href="professor.html">Professores</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('user.login') }}">Login</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('view.user.login') }}">Login</a></li>
         </ul>
       </div>
     </div>
