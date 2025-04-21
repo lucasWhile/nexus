@@ -9,15 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
+
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id('id'); // Chave primária
-            $table->string('name', 45);
-            $table->string('email', 45)->unique();
-            $table->string('password', 45);
-            $table->string('level', 45);
-            $table->string('cpf', 45)->unique();
+            $table->string('name', 255);
+            $table->string('email', 255)->unique();
+            $table->string('password', 255);
+            $table->string('level', 255);
+            $table->string('cpf', 255)->unique();
             $table->timestamps();
         });
         

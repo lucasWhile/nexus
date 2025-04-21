@@ -1,0 +1,136 @@
+.toolbar {
+  background-color: #353535;
+}
+
+.toolbar button {
+  background-color: #353535;
+  border-bottom-color: #353535;
+}
+
+.toolbar button.inactive {
+  color: #c0c0c0;
+}
+
+.toolbar button.active {
+  color: #ffffff;
+}
+
+#slidebar {
+  background-color: #353535;
+}
+
+#slidebar i {
+  border-bottom-color: #353535;
+}
+
+#slidebar a {
+  color: #ffffff;
+}
+
+#modal-editor .file-path {
+  border-color: #353535;
+}
+
+#modal-editor .modal-footer {
+  background-color: #353535;
+  color: #ffffff;
+}
+
+.toolbar button.active:hover {
+  background-color: #ba2222;
+  border-bottom-color: #efa72e;
+}
+
+#slidebar i:hover {
+  background-color: #ba2222;
+  border-bottom-color: #efa72e;
+}
+
+#history .dropdown-menu {
+  background-color: #fffff3;
+  border-left-color: #c3c645;
+}
+
+#history button {
+  background-color: #c3c645;
+  color: #ffffff;
+}
+
+#history ul li:hover {
+  background-color: #fafaec;
+}
+
+#breadcrumb {
+  background-color: #fffff3;
+}
+
+#modal-editor .file-path {
+  background-color: #fffff3;
+}
+
+#files .ui-selecting, #files .ui-selected {
+  background-color: #feffe4;
+}
+
+#files .ui-selecting:first-child, #files .ui-selected:first-child {
+  border-top-color: #feffe4;
+}
+
+#files td.icon .fa-folder, #files td.icon .fa-level-up {
+  color: #eea147;
+}
+
+#files td.icon i {
+  color: #5590bc;
+}
+
+#modal-transfers .icon i {
+  color: #5590bc;
+}
+
+.dropdown-menu li a:hover, .dropdown-menu .active a:hover {
+  background-color: #4094fa;
+}
+
+.toolbar .logo {
+  background: url('../images/monsta-logo-400w.png') no-repeat center center;
+  background-size: 144px 33px;
+  height: 33px;
+  width: 144px;
+}
+
+@media (max-width:1000px) {
+  .toolbar .logo {
+    background: url('../images/monsta-logo-400w.png') no-repeat center center;
+    background-size: 144px [cp18h];
+    background-position: -26px;
+    width: 29px;
+  }
+}
+
+#modal-editor .modal-footer .logo {
+  background: url('../images/monsta-logo-400w.png') no-repeat center center;
+  background-size: 100px 23px;
+  height: 23px;
+  width: 100px;
+}
+
+@media (max-width:1000px) {
+  #modal-editor .modal-footer .logo {
+    background: url('../images/monsta-logo-400w.png') no-repeat center center;
+    background-size: 100px [cp19h];
+    background-position: -17px;
+    width: 23px;
+  }
+}
+
+.label-warning {
+  background-color: #efa72e;
+  color: #ffffff;
+  
+}
+
+.btn-primary {
+  background-color: #337ab7;
+  color: #ffffff;
+}
