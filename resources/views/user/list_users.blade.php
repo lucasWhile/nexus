@@ -48,7 +48,7 @@
 
                                         </td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-outline-secondary btn-sm">
+                                            <a href="{{ route('edit.user',$user->id) }}" class="btn btn-outline-secondary btn-sm">
                                                 ✏️ Editar
                                             </a>
                                         </td>

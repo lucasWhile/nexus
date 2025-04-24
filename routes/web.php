@@ -29,4 +29,6 @@ Route::get('list/users',[UserController::class, 'list_users'])->name('list_users
 //desabilitar ou habilitar o usuario
 Route::post('user/disable',[UserController::class, 'user_disable'])->name('user.disable');
 
+Route::get('edit/user/{id}',[UserController::class, 'edit_user'])->name('edit.user');
+Route::get('date/edit/user/',[UserController::class, 'edit_save'])->name('date.edit.user');
 // editar dados do usuario

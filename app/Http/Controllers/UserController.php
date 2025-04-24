@@ -80,17 +80,60 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit_user(string $id)
     {
-        //
+        $user=User::find($id);
+        return view('user.edit_user',compact('user'));
     }
+    
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function edit_save(Request $request)
     {
-        //
+  
+
+        // Atualiza os campos
+      
+            $user = User::findOrFail($request->id);
+           
+        
+            // Atualiza os campos somente se vierem preenchidos
+            if (!empty($request->name)) {
+                $user->name = $request->name;
+            }
+        
+            if (!empty($request->email)) {
+                $user->email = $request->email;
+            }
+        
+            if (!empty($request->level)) {
+                $user->level = $request->level;
+            }
+        
+            if (!empty($request->cpf)) {
+                $user->cpf = $request->cpf;
+            }
+        
+            
+            if ($request->filled('lattes_url') && $request->level == 'professor') {
+                // Atualiza ou cria o profile vinculado a esse usuário
+                $user->profile()->updateOrCreate(
+                    [], // condição: o relacionamento já define user_id
+                    ['lattes_url' => $request->lattes_url]
+                );
+            }
+        
+           
+            $user->save();
+        
+      
+  
+     
+    
+        // Redireciona com mensagem de sucesso
+       return redirect()->route('edit.user',$user->id)->with('success', 'Usuário atualizado com sucesso!');
     }
 
     /**
