@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id('id');
-            $table->string('title', 45);
+            $table->string('title', 255);
             $table->longText('abstract');
-            $table->string('status', 45);
-            $table->string('image', 45);
+            $table->string('status', 255);
+            $table->string('image', 255);
             $table->date('start_date');
             $table->date('end_date');
-            $table->string('project_url', 45);
-            $table->string('call_number', 45);
-            $table->string('research_group', 45);
+            $table->string('project_url', 255);
+            $table->string('call_number', 255);
+            $table->string('research_group', 255);
             $table->timestamps();
         });
         

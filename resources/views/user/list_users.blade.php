@@ -48,9 +48,16 @@
 
                                         </td>
                                         <td class="text-center">
+                                            @if( $user->status==1 )
                                             <a href="{{ route('edit.user',$user->id) }}" class="btn btn-outline-secondary btn-sm">
                                                 ✏️ Editar
                                             </a>
+                                            @else
+                                            <a href="#" class="btn btn-outline-danger btn-sm">
+                                                ❌ Editar
+                                            </a>
+                                            @endif
+                                    
                                         </td>
                                         <td class="text-center">
                                             <form action="{{ route('user.disable') }}" method="POST" onsubmit="return confirm('Tem certeza que deseja desativar o usuario?');">

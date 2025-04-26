@@ -1,16 +1,16 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('user.index');
-})->name('index');
 
 
 Route::get('base', function () {
     return view('basesLayout.base');
 });
+
+
+Route::get('/',[PostController::class, 'index'])->name('index');
 
 //acessar a view de login, onde o mesmo usa o email e senha pois o laravel trabalha de forma mais eficiente, logo após
 //os dados sendo verificados e com o sucesso da verificação o mesmo retorna para a index do sistema já authenticado;
@@ -32,3 +32,11 @@ Route::post('user/disable',[UserController::class, 'user_disable'])->name('user.
 Route::get('edit/user/{id}',[UserController::class, 'edit_user'])->name('edit.user');
 Route::get('date/edit/user/',[UserController::class, 'edit_save'])->name('date.edit.user');
 // editar dados do usuario
+
+
+
+//adicionando postagem
+
+Route::get('view/new/post',[PostController::class, 'view_post'])->name('view.post');
+
+Route::post('date/new/post',[PostController::class, 'save_post'])->name('date.post');
