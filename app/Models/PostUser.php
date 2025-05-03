@@ -4,6 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @mixin IdeHelperPostUser
+ */
 class PostUser extends Model
 {
     protected $table = 'post_user';

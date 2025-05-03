@@ -40,3 +40,5 @@ Route::get('logout/user/',[UserController::class, 'logout_user'])->name('lagout.
 Route::get('view/new/post',[PostController::class, 'view_post'])->name('view.post');
 
 Route::post('date/new/post',[PostController::class, 'save_post'])->name('date.post');
+
+Route::get('my/projects',[PostController::class,'my_projects'])->name('view.my.projects');

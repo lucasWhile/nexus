@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
+
 use App\Models\PostUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -84,6 +85,17 @@ class PostController extends Controller
     
         // Ou se quiser usar redirect:
         // return redirect()->back()->with('success', 'Projeto cadastrado com sucesso!');
+    }
+
+    public function my_projects()  {
+
+        $user = Auth::user(); 
+            //erro do compilador , FUNCIONA PERFEITAMENTE 
+        $projetos =  $user->posts;
+    
+        return view('post.myprojects', compact('projetos'));
+        
+        
     }
     
 
