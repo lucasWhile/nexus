@@ -64,7 +64,7 @@
                                         <td>{{ $projeto->call_number }}</td>
                                         <td>{{ $projeto->research_group }}</td>
                                         <td class="text-center">
-                                            <a href="#" class="btn btn-outline-secondary btn-sm">
+                                            <a href="{{ route('edit.project',$projeto->id) }}" class="btn btn-outline-secondary btn-sm">
                                                 ✏️ Editar
                                             </a>
                                         </td>

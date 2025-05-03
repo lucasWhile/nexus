@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\PostUser;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -97,7 +98,46 @@ class PostController extends Controller
         
         
     }
+
+    public function edit_project($id){
+        $projeto = Post::findOrFail($id);
+
+        return view('post.view_edit_project', compact('projeto'));
+    }
+
+
+    public function update_project(Request $request, $id)
+    {
+        $projeto = Post::findOrFail($id);
     
+        // Validação (ajuste conforme necessário)
+    
+        // Atualiza campos simples
+        $projeto->title = $request->title;
+        $projeto->abstract = $request->abstract;
+        $projeto->status = $request->status;
+        $projeto->start_date = $request->start_date;
+        $projeto->end_date = $request->end_date;
+        $projeto->project_url = $request->project_url;
+        $projeto->call_number = $request->call_number;
+        $projeto->research_group = $request->research_group;
+    
+        // Tratamento de nova imagem (se houver)
+        if ($request->hasFile('image')) {
+            // Remove imagem antiga se existir
+            if ($projeto->image && Storage::disk('public')->exists($projeto->image)) {
+                Storage::disk('public')->delete($projeto->image);
+            }
+    
+            // Salva a nova imagem
+            $path = $request->file('image')->store('projetos', 'public');
+            $projeto->image = $path;
+        }
+    
+        $projeto->save();
+
+        return redirect()->route('edit.project', $projeto->id)->with('success', 'Informações do projeto atualizada com sucesso!');
+    }
 
 
     /**

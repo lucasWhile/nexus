@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->id('id');
-            $table->string('lattes_url', 45);
+            $table->text('lattes_url');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
         

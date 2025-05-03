@@ -42,3 +42,7 @@ Route::get('view/new/post',[PostController::class, 'view_post'])->name('view.pos
 Route::post('date/new/post',[PostController::class, 'save_post'])->name('date.post');
 
 Route::get('my/projects',[PostController::class,'my_projects'])->name('view.my.projects');
+
+
+Route::get('edit/project/{id}',[PostController::class,'edit_project'])->name('edit.project');
+Route::post('update/project/{id}',[PostController::class,'update_project'])->name('update.project');
