@@ -30,7 +30,12 @@
           <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
           <li class="nav-item"><a class="nav-link" href="projetos.html">Projetos</a></li>
           <li class="nav-item"><a class="nav-link" href="professor.html">Professores</a></li>
+
+          @if(Auth::check())
+          <li class="nav-item"><a class="nav-link" href="{{ route('lagout.user') }}">Sair</a></li>
+      @else
           <li class="nav-item"><a class="nav-link" href="{{ route('view.user.login') }}">Login</a></li>
+      @endif
         </ul>
       </div>
     </div>

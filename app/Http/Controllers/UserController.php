@@ -8,8 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
-
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -202,6 +201,12 @@ class UserController extends Controller
        
         
     }
-
+    
+    public function logout_user()  {
+        Auth::logout(); // Faz o logout do usuário autenticado
+        Session::flush(); // 
+    return redirect()->route('index')->with('success', 'Logout realizado com sucesso!');
+        
+    }
 
 }

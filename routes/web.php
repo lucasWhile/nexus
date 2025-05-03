@@ -32,7 +32,7 @@ Route::post('user/disable',[UserController::class, 'user_disable'])->name('user.
 Route::get('edit/user/{id}',[UserController::class, 'edit_user'])->name('edit.user');
 Route::get('date/edit/user/',[UserController::class, 'edit_save'])->name('date.edit.user');
 // editar dados do usuario
-
+Route::get('logout/user/',[UserController::class, 'logout_user'])->name('lagout.user');
 
 
 //adicionando postagem

@@ -3,7 +3,11 @@
 @section('title','index')
 @section('container')
     
-
+@if(session('success'))
+    <div class="alert alert-success">
+        {{ session('success') }}
+    </div>
+@endif
 
   <!-- HEADER COM BUSCA -->
   <header class="bg-primary text-white text-center py-5">
