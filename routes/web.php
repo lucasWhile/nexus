@@ -33,6 +33,9 @@ Route::get('edit/user/{id}',[UserController::class, 'edit_user'])->name('edit.us
 Route::get('date/edit/user/',[UserController::class, 'edit_save'])->name('date.edit.user');
 // editar dados do usuario
 Route::get('logout/user/',[UserController::class, 'logout_user'])->name('lagout.user');
+// ver meu perfil
+
+Route::get('view/my/profile/',[UserController::class, 'my_profile'])->name('view.my.profile');
 
 
 //adicionando postagem

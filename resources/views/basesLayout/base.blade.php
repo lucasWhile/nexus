@@ -32,6 +32,8 @@
           <li class="nav-item"><a class="nav-link" href="professor.html">Professores</a></li>
 
           @if(Auth::check())
+          <li class="nav-item"><a class="nav-link" href="{{ route('view.my.profile') }}">Meu Perfil</a></li>
+
           <li class="nav-item"><a class="nav-link" href="{{ route('lagout.user') }}">Sair</a></li>
       @else
           <li class="nav-item"><a class="nav-link" href="{{ route('view.user.login') }}">Login</a></li>

@@ -15,9 +15,11 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function my_profile()
     {
-        //
+        $userId = Auth::id();
+        $user=User::find($userId);
+        return view('user.myperfil',compact('user'));
     }
 
     /**
