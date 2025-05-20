@@ -79,7 +79,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <p class="card-text">{{ Str::limit($post->abstract, 100) }}</p>
-                        <a href="#" class="btn btn-primary">Ver mais</a>
+                        <a href="{{ route('unique.projects',$post->id) }}" class="btn btn-primary">Ver mais</a>
                     </div>
                 </div>
             </div>

@@ -179,4 +179,12 @@ class PostController extends Controller
     {
         //
     }
+
+    public function unique_project($id){
+
+          $project=Post::find($id);
+
+        return view('post.uniqueproject', compact('project'))->with('success', 'Encontrado com sucesso');
+
+    }
 }

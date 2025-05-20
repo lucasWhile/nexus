@@ -49,3 +49,7 @@ Route::get('my/projects',[PostController::class,'my_projects'])->name('view.my.p
 
 Route::get('edit/project/{id}',[PostController::class,'edit_project'])->name('edit.project');
 Route::post('update/project/{id}',[PostController::class,'update_project'])->name('update.project');
+
+
+
+Route::get('unique/projects/{id}',[PostController::class,'unique_project'])->name('unique.projects');
