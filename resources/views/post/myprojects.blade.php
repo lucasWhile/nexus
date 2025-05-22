@@ -4,6 +4,13 @@
 @section('container')
 
 
+@if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+    </div>
+@endif
+
 <div class="container my-5">
     <div class="row justify-content-center">
         <div class="col-12">
@@ -39,11 +46,9 @@
                                         <td>{{ $projeto->title }}</td>
                                         <td>{{ Str::limit($projeto->abstract, 50) }}</td>
                                         <td>
-                                            @if($projeto->status == 1)
-                                                Ativo
-                                            @else
-                                                Inativo
-                                            @endif
+                                         {{  $projeto->status }}
+                                            
+                                            
                                         </td>
                                         <td>
                                             @if($projeto->image)
@@ -68,15 +73,37 @@
                                                 ✏️ Editar
                                             </a>
                                         </td>
+
+                                 
+
+                                     
                                         <td class="text-center">
-                                            <form action="#" method="POST" onsubmit="return confirm('Deseja alterar o status deste projeto?');">
+                                            <form action="{{ route('finish.projects', $projeto->id) }}" method="GET" onsubmit="return confirm('Deseja alterar o status deste projeto?');">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $projeto->id }}">
                                                 <button type="submit" class="btn btn-outline-danger btn-sm">
                                                     Ativar/Desativar
                                                 </button>
                                             </form>
+
+                                               @if ($projeto->status=="Finalizado")
+
+                                         <form action="{{ route('delete.projects', $projeto->id) }}" method="GET" onsubmit="return confirm('Deseja deletar o projeto {{ $projeto->title }}?');">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $projeto->id }}">
+                                                <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                    Deletar Projeto
+                                                </button>
+                                            </form>
+                                            
+                                        @endif
                                         </td>
+
+                                     
+
+                                        
+
+                                  
                                     </tr>
                                 @endforeach
                             </tbody>

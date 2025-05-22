@@ -187,4 +187,34 @@ class PostController extends Controller
         return view('post.uniqueproject', compact('project'))->with('success', 'Encontrado com sucesso');
 
     }
+
+    
+   public function finish_project($id) {
+    $project = Post::find($id);
+
+    if ($project) {
+        if ($project->status == "Finalizado") {
+            $project->status = "Em andamento";
+        } else {
+            $project->status = "Finalizado";
+        }
+        $project->save();
+
+        return redirect()->back()->with('success', 'Status do projeto atualizado com sucesso!');
+    }
+
+    return redirect()->back()->with('error', 'Projeto não encontrado.');
+    }
+
+    public function delete_project(Request $request) {
+     $id = $request->id;
+    $project = Post::find($id);
+      $projecttitle= $project->title;
+    if ($project) {
+        $project->delete();
+        return redirect()->back()->with('success', 'Projeto: ' . $projecttitle . ' deletado com sucesso');
+    }
+    }
+
+
 }

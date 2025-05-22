@@ -53,3 +53,8 @@ Route::post('update/project/{id}',[PostController::class,'update_project'])->nam
 
 
 Route::get('unique/projects/{id}',[PostController::class,'unique_project'])->name('unique.projects');
+
+
+Route::get('finish/projects/{id}',[PostController::class,'finish_project'])->name('finish.projects');
+
+Route::get('delete/projects/',[PostController::class,'delete_project'])->name('delete.projects');
