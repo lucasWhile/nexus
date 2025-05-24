@@ -55,6 +55,15 @@
                 </div>
             @endif
 
+               <div class="mb-3">
+                <strong>Usuários Associados ao Projeto:</strong>
+                <ul>
+                    @foreach($project->users as $user)
+                        <li>{{ $user->name }} ({{ $user->level ?? 'Sem Cargo' }})</li>
+                    @endforeach
+                </ul>
+            </div>
+
             <a href="{{ url()->previous() }}" class="btn btn-secondary">Voltar</a>
         </div>
     </div>

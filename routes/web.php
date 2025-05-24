@@ -58,3 +58,13 @@ Route::get('unique/projects/{id}',[PostController::class,'unique_project'])->nam
 Route::get('finish/projects/{id}',[PostController::class,'finish_project'])->name('finish.projects');
 
 Route::get('delete/projects/',[PostController::class,'delete_project'])->name('delete.projects');
+
+
+// web.php
+Route::get('/professores/buscar', function (Illuminate\Http\Request $request) {
+    $term = $request->get('term');
+    $professores = \App\Models\User::where('level', 'professor')
+                      ->where('name', 'LIKE', "%$term%")
+                      ->get(['id as value', 'name as label']);
+    return response()->json($professores);
+});

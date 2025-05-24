@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 
 use App\Models\PostUser;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -23,7 +24,8 @@ class PostController extends Controller
     } 
     public function view_post()
     {
-        return view('post.add_new_post');
+        $professores = User::where('level', 'professor')->get();
+        return view('post.add_new_post',compact('professores'));
     }
 
     /**
@@ -33,15 +35,15 @@ class PostController extends Controller
     {
         // Validação
         $validated = $request->validate([
-            'title' => 'required|string',
+            'title' => 'required',
             'abstract' => 'required',
             'status' => 'required',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after_or_equal:start_date',
+            'start_date' => 'required',
+            'end_date' => 'required',
             'project_url' => 'nullable',
             'call_number' => 'nullable',
             'research_group' => 'nullable',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image' => 'required',
         ]);
     
         // Upload da imagem usando Storage
@@ -71,16 +73,50 @@ class PostController extends Controller
     
         $idPost = $post->id;
         $id_usuario = Auth::user()->id;
+        $professoresIds = $request->input('professores_ids', []);
     
+      
+       
+       if (isset($request->participa) && !empty($request->participa)) {
+
+            PostUser::create([
+                'user_id' => $id_usuario,
+                'post_id' => $idPost,
+            ]);
+
+            foreach ($professoresIds as $id_usuarios) {
+            PostUser::create([
+                'user_id' => $id_usuarios,
+                'post_id' => $idPost,
+            ]);
+            }
+         } else {
+         foreach ($professoresIds as $id_usuarios) {
+                        echo "Sem  usuario logado";
+
+                        
+                    PostUser::create([
+                        'user_id' => $id_usuarios,
+                        'post_id' => $idPost,
+                    ]);
+                    
+    }
+
+            
+         }
+
+    /*
         $postUser = PostUser::create([
             'user_id' => $id_usuario,
             'post_id' => $idPost,
         ]);
-    
+  
         // Verificando se o relacionamento foi salvo
         if (!$postUser) {
-            return redirect()->route('view.post')->with('sucess','erro ao salvar, tente novamente');
+        //    return redirect()->route('view.post')->with('sucess','erro ao salvar, tente novamente');
         }
+
+    */
     
         return redirect()->route('view.post')->with('success', 'Postagem publicada com sucesso');
     
