@@ -18,28 +18,40 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           @auth
-          <li class="nav-item"><a class="nav-link" href="{{ route('view.user.add.create') }}">Adicionar Usuarios</a></li>
-          @if (Auth::user()->level == 'administrador')
-          <li class="nav-item"><a class="nav-link" href="{{ route('list_users') }}">Listar Usuarios</a></li>
+              @if (Auth::user()->level == 'administrador')
+              <li class="nav-item"><a class="nav-link" href="{{ route('list_users') }}">Listar Usuarios</a></li>
+              <li class="nav-item"><a class="nav-link" href="{{ route('view.user.add.create') }}">Adicionar Usuarios</a></li>
 
-          @endif
+              <li class="nav-item"><a class="nav-link" href="{{ route('view.all.projects') }}">Todos os Projetos</a></li>
 
-     
 
+         
+              @elseif (Auth::user()->level == 'professor')
+
+                 <li class="nav-item"><a class="nav-link" href="{{ route('view.my.projects') }}">Meus Projetos</a></li>
+
+              @endif
+
+
+              
           @endauth
-          <li class="nav-item"><a class="nav-link" href="index.html">Início</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ route('view.my.projects') }}">Projetos</a></li>
-          <li class="nav-item"><a class="nav-link" href="professor.html">Professores</a></li>
+          <li class="nav-item"><a class="nav-link" href="{{ route('index') }}">Início</a></li>
+       
+       
 
           @if(Auth::check())
           <li class="nav-item"><a class="nav-link" href="{{ route('view.my.profile') }}">Meu Perfil</a></li>
 
           <li class="nav-item"><a class="nav-link" href="{{ route('lagout.user') }}">Sair</a></li>
-      @else
+         @else
           <li class="nav-item"><a class="nav-link" href="{{ route('view.user.login') }}">Login</a></li>
-      @endif
+         @endif
         </ul>
       </div>
+
+      
+
+      
     </div>
   </nav>
 

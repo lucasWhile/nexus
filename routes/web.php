@@ -37,6 +37,8 @@ Route::get('logout/user/',[UserController::class, 'logout_user'])->name('lagout.
 
 Route::get('view/my/profile/',[UserController::class, 'my_profile'])->name('view.my.profile');
 
+Route::get('profile/{id}',[UserController::class, 'profile'])->name('profile.user');
+
 
 //adicionando postagem
 
@@ -45,6 +47,8 @@ Route::get('view/new/post',[PostController::class, 'view_post'])->name('view.pos
 Route::post('date/new/post',[PostController::class, 'save_post'])->name('date.post');
 
 Route::get('my/projects',[PostController::class,'my_projects'])->name('view.my.projects');
+
+Route::get('all/projects',[PostController::class,'all_projects'])->name('view.all.projects');
 
 
 Route::get('edit/project/{id}',[PostController::class,'edit_project'])->name('edit.project');
@@ -60,7 +64,7 @@ Route::get('finish/projects/{id}',[PostController::class,'finish_project'])->nam
 Route::get('delete/projects/',[PostController::class,'delete_project'])->name('delete.projects');
 
 
-// web.php
+
 Route::get('/professores/buscar', function (Illuminate\Http\Request $request) {
     $term = $request->get('term');
     $professores = \App\Models\User::where('level', 'professor')

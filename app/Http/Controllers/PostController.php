@@ -187,9 +187,11 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function all_projects()
     {
-        //
+          $projetos= Post::orderBy('created_at', 'desc')->get();
+          return view('post.all_projects',compact('projetos'));
+          
     }
 
     /**

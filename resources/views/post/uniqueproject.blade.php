@@ -59,7 +59,7 @@
                 <strong>Usuários Associados ao Projeto:</strong>
                 <ul>
                     @foreach($project->users as $user)
-                        <li>{{ $user->name }} ({{ $user->level ?? 'Sem Cargo' }})</li>
+                        <li> <a href="{{ route('profile.user',$user->id) }}">{{ $user->name }}</a>   ({{ $user->level ?? 'Sem Cargo' }})</li>
                     @endforeach
                 </ul>
             </div>

@@ -22,6 +22,14 @@ class UserController extends Controller
         return view('user.myperfil',compact('user'));
     }
 
+         
+    public function profile($id)
+    {
+        $user=User::find($id);
+  
+        return view('user.perfil_user',compact('user'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
