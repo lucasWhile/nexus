@@ -15,7 +15,7 @@
         <h5 class="mb-0">Cadastrar Projeto</h5>
       </div>
       <div class="card-body">
-        <form action="{{ route('date.post') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('date.post') }}" method="POST" enctype="multipart/form-data" id="meuFormulario" onsubmit="return validarParticipacao()">
           @csrf
   
           <div class="mb-3">
@@ -72,18 +72,19 @@
             <input type="text" class="form-control" id="research_group" name="research_group" maxlength="45">
           </div>
 
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="participa" value="1" id="checkDefault">
-            <label class="form-check-label" for="checkDefault">
-             Você participa desse Projeto?
-            </label>
-          </div>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="participa" value="1" id="checkDefault">
+          <label class="form-check-label" for="checkDefault">
+            Você participa desse Projeto?
+          </label>
+        </div>
 
-          <div class="mb-3">
-            <label for="professor_search" class="form-label">Professores:</label>
-            <input type="text" class="form-control" id="professor_search" maxlength="45" autocomplete="off">
-            <input type="hidden" id="professor_id" name="professor_id[]">
-          </div>
+        <div class="mb-3">
+          <label for="professor_search" class="form-label">Professores:</label>
+          <input type="text" class="form-control" id="professor_search" maxlength="45" autocomplete="off">
+          <input type="hidden" id="professor_id" name="professor_id[]">
+        </div>
+
 
           <!-- Botão para adicionar o professor -->
           <button type="button" id="add_professor_btn" class="btn btn-secondary mb-3">Adicionar professor</button>
@@ -103,6 +104,18 @@
 <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
 
 <script>
+
+    function validarParticipacao() {
+    const participa = document.getElementById('checkDefault').checked;
+    const professorSelecionado = document.getElementById('professor_id').value.trim() !== '';
+
+    if (!participa && !professorSelecionado) {
+      alert('É necessário marcar sua participação ou adicionar pelo menos um professor.');
+      return false;
+    }
+
+    return true;
+  }
   document.addEventListener('DOMContentLoaded', function() {
     function previewImage() {
       const input = document.getElementById('image');

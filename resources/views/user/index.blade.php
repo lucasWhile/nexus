@@ -2,6 +2,25 @@
 @extends('basesLayout.base')
 @section('title','index')
 @section('container')
+
+
+@auth
+
+<div id="meu-alerta" class="alert alert-success alert-dismissible fade show" role="alert">
+Olá, {{ explode(' ', Auth::user()->name)[0] }}! Seu nível de acesso é: {{ Auth::user()->level }}.
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+</div>
+
+<script>
+// Espera 4 segundos e remove o alerta automaticamente
+setTimeout(function () {
+  const alert = bootstrap.Alert.getOrCreateInstance(document.getElementById('meu-alerta'));
+  alert.close();
+}, 4000);
+</script>
+
+    
+@endauth
     
 @if(session('success'))
     <div class="alert alert-success">
