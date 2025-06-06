@@ -45,7 +45,7 @@ setTimeout(function () {
 
   <div class="container p-2">
     <div class="row d-flex justify-content-center">
-      <div class="col-8 col-sm-8 ">
+      <div class="col-12 col-sm-8 ">
         <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
             
             <div class="carousel-indicators">
@@ -57,7 +57,10 @@ setTimeout(function () {
             <div class="carousel-inner">
                 @foreach($posts as $index => $post)
                     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                        <img src="{{ asset('storage/' . $post->image) }}" class="d-block " alt="{{ $post->title }}">
+<img src="{{ asset('storage/' . $post->image) }}" 
+     class="d-block w-100 img-fluid object-fit-cover" 
+     alt="{{ $post->title }}" 
+     style="max-height: 500px;">
                         <div class="carousel-caption d-none d-md-block">
                             <h5>{{ $post->title }}</h5>
                             <p>{{ Str::limit($post->abstract, 100) }}</p>

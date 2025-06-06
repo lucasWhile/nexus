@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+
+
 class PostController extends Controller
 {
     /**
@@ -47,8 +51,20 @@ class PostController extends Controller
         ]);
     
         // Upload da imagem usando Storage
-        if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('imagens_projetos', 'public');
+      if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+
+            $manager = new ImageManager(new Driver());
+
+            // Lê e redimensiona
+            $image = $manager->read($imageFile)->resize(1280, 720);
+
+            // Gera nome e salva no disco
+            $filename = uniqid() . '.' . $imageFile->getClientOriginalExtension();
+            $path = "imagens_projetos/{$filename}";
+
+            Storage::disk('public')->put($path, (string) $image->toJpeg());
+
         } else {
             return response()->json(['error' => 'Imagem não enviada'], 400);
         }
