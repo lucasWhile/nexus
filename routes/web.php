@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BuscaController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -72,3 +73,7 @@ Route::get('/professores/buscar', function (Illuminate\Http\Request $request) {
                       ->get(['id as value', 'name as label']);
     return response()->json($professores);
 });
+
+
+
+Route::get('/buscar', [BuscaController::class, 'search']);
