@@ -30,6 +30,12 @@
 
                  <li class="nav-item"><a class="nav-link" href="{{ route('view.my.projects') }}">Meus Projetos</a></li>
 
+             
+
+              @elseif (Auth::user()->level == 'estagiario')
+
+               <li class="nav-item"><a class="nav-link" href="{{ route('view.all.projects') }}">Todos os Projetos</a></li>
+
               @endif
 
 
@@ -40,6 +46,7 @@
        
 
           @if(Auth::check())
+
           <li class="nav-item"><a class="nav-link" href="{{ route('view.my.profile') }}">Meu Perfil</a></li>
 
           <li class="nav-item"><a class="nav-link" href="{{ route('lagout.user') }}">Sair</a></li>

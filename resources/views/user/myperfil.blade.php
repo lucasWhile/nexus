@@ -9,7 +9,7 @@
             <div class="card shadow-sm border-0 mb-4">
                 <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
                     <h5 class="mb-0"><i class="bi bi-person-circle me-2"></i>Meu Perfil</h5>
-                    <a href="#" class="btn btn-sm btn-light">Editar</a>
+                    <a href="{{ route('edit.user',Auth()->user()->id) }}" class="btn btn-sm btn-light">Editar</a>
                 </div>
                 <div class="card-body px-4">
                     <dl class="row mb-0">

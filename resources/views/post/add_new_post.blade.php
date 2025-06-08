@@ -105,17 +105,17 @@
 
 <script>
 
-    function validarParticipacao() {
-    const participa = document.getElementById('checkDefault').checked;
-    const professorSelecionado = document.getElementById('professor_id').value.trim() !== '';
+  function validarParticipacao() {
+  const participa = document.getElementById('checkDefault').checked;
+  const professoresAdicionados = document.querySelectorAll("input[name='professores_ids[]']").length > 0;
 
-    if (!participa && !professorSelecionado) {
-      alert('É necessário marcar sua participação ou adicionar pelo menos um professor.');
-      return false;
-    }
-
-    return true;
+  if (!participa && !professoresAdicionados) {
+    alert('É necessário marcar sua participação ou adicionar pelo menos um professor.');
+    return false;
   }
+
+  return true;
+}
   document.addEventListener('DOMContentLoaded', function() {
     function previewImage() {
       const input = document.getElementById('image');
